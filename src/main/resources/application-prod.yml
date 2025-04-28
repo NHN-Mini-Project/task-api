@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://s4.java21.net:13306/nhn_exam_106
+    url: jdbc:mysql://s4.java21.net:13306/nhn_academy_106
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: nhn_academy_106
     password: oD8vlmwi!

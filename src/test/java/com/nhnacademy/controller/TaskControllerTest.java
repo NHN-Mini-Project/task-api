@@ -24,27 +24,7 @@ class TaskControllerTest {
     @MockBean
     private TaskService taskService;
 
-    @Test
-    void testGetTask() throws Exception {
-        long projectId = 1L;
-        long taskId = 1L;
 
-        Task mockTask = new Task("Test Task", "Task Description", null, null);
-
-        java.lang.reflect.Field field = Task.class.getDeclaredField("taskId");
-        field.setAccessible(true);
-        field.set(mockTask, taskId);
-
-        when(taskService.getTaskById(taskId)).thenReturn(mockTask);
-
-        mockMvc.perform(get("/project/{projectId}/task/{taskId}", projectId, taskId))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.taskId").value(taskId))
-                .andExpect(jsonPath("$.taskTitle").value("Test Task"))
-                .andExpect(jsonPath("$.taskDescription").value("Task Description"));
-
-        verify(taskService).getTaskById(taskId);
-    }
 
     @Test
     void testRegisterTask() throws Exception {

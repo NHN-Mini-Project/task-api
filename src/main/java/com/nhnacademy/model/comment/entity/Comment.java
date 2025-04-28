@@ -22,9 +22,9 @@ public class Comment {
     private long taskId;
 
     @NotNull
-    private long commentWriterId;
+    private String commentWriterId;
 
-    public Comment(String commentContent, long taskId, long commentWriterId) {
+    public Comment(String commentContent, long taskId, String commentWriterId) {
         this.commentContent = commentContent;
         this.taskId = taskId;
         this.commentWriterId = commentWriterId;

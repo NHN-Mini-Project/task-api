@@ -13,6 +13,7 @@ import com.nhnacademy.repository.MilestoneRepository;
 import com.nhnacademy.repository.ProjectRepository;
 import com.nhnacademy.repository.TaskRepository;
 import com.nhnacademy.service.TaskService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class TaskServiceImpl implements TaskService {
     private final TaskRepository taskRepository;
     private final ProjectRepository projectRepository;

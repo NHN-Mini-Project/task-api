@@ -15,6 +15,7 @@ import com.nhnacademy.repository.ProjectTagRepository;
 import com.nhnacademy.repository.TagRepository;
 import com.nhnacademy.repository.TaskRepository;
 import com.nhnacademy.service.ProjectTagService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ProjectTagServiceImpl implements ProjectTagService {
 
     private final ProjectTagRepository projectTagRepository;

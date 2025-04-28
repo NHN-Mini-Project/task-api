@@ -31,7 +31,7 @@ class CommentServiceImplTest {
 
     @Test
     void registerComment_SaveComment() {
-        RegisterCommentRequest request = new RegisterCommentRequest("댓글 내용", 1L, 123L);
+        RegisterCommentRequest request = new RegisterCommentRequest("댓글 내용", 1L, "123");
 
         commentService.registerComment(request);
 
@@ -42,7 +42,7 @@ class CommentServiceImplTest {
     void updateComment_UpdateComment() {
         long commentId = 1L;
         UpdateCommentRequest request = new UpdateCommentRequest("수정된 내용");
-        Comment comment = new Comment("원래 내용", 1L, 123L);
+        Comment comment = new Comment("원래 내용", 1L, "123");
 
         when(commentRepository.findById(commentId)).thenReturn(Optional.of(comment));
 
@@ -55,7 +55,7 @@ class CommentServiceImplTest {
     @Test
     void deleteComment_DeleteComment() {
         long commentId = 1L;
-        Comment comment = new Comment("댓글 내용", 1L, 123L);
+        Comment comment = new Comment("댓글 내용", 1L, "123");
 
         when(commentRepository.findById(commentId)).thenReturn(Optional.of(comment));
 
@@ -67,7 +67,7 @@ class CommentServiceImplTest {
     @Test
     void getCommentById() {
         long commentId = 1L;
-        Comment comment = new Comment("댓글 내용", 1L, 123L);
+        Comment comment = new Comment("댓글 내용", 1L, "123");
 
         when(commentRepository.findById(commentId)).thenReturn(Optional.of(comment));
 
@@ -87,7 +87,7 @@ class CommentServiceImplTest {
     @Test
     void getCommentsByTaskId() {
         long taskId = 1L;
-        List<Comment> comments = List.of(new Comment("댓글 내용", taskId, 123L));
+        List<Comment> comments = List.of(new Comment("댓글 내용", taskId, "123"));
 
         when(commentRepository.findAllByTaskId(taskId)).thenReturn(comments);
 

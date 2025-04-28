@@ -1,12 +1,14 @@
 package com.nhnacademy.controller;
 
 import com.nhnacademy.model.comment.dto.RegisterCommentRequest;
+import com.nhnacademy.model.comment.dto.ResponseCommentListDto;
 import com.nhnacademy.model.comment.dto.UpdateCommentRequest;
 import com.nhnacademy.model.comment.entity.Comment;
 import com.nhnacademy.service.CommentService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -28,8 +30,17 @@ public class CommentController {
     
     // task의 comment 리스트 반환
     @GetMapping("/{projectId}/task/{taskId}/comment")
-    public List<Comment> getCommentsByTaskId(@PathVariable Long taskId) {
-        return commentService.getCommentsByTaskId(taskId);
+    public ResponseCommentListDto getCommentsByTaskId(@PathVariable("taskId") Long taskId,
+                                                      @PathVariable("projectId") long projectId) {
+        List<Comment> comments = commentService.getCommentsByTaskId(taskId);
+
+        List<RegisterCommentRequest> list = new ArrayList<>();
+        for(int i = 0; i < comments.size(); i++) {
+            Comment comment = comments.get(i);
+            list.add(new RegisterCommentRequest(comment.getCommentContent(), comment.getTaskId(), comment.getCommentWriterId()));
+        }
+
+        return new ResponseCommentListDto(list);
     }
 
     // Comment 등록
@@ -37,6 +48,9 @@ public class CommentController {
     public void registerComment(@PathVariable Long projectId,
                                 @PathVariable Long taskId,
                                 @RequestBody RegisterCommentRequest request) {
+
+
+
         commentService.registerComment(request);
     }
     

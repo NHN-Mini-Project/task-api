@@ -16,9 +16,10 @@ public class TaskController {
     private final TaskService taskService;
 
     @GetMapping("project/{projectId}/task/{taskId}")
-    public ResponseEntity<Task> getTask(@PathVariable long projectId, @PathVariable long taskId) {
+    public ResponseEntity<ResponseTaskDto> getTask(@PathVariable long projectId, @PathVariable long taskId) {
         Task task = taskService.getTaskById(taskId);
-        return ResponseEntity.status(HttpStatus.OK).body(task);
+        ResponseTaskDto responseTaskDto = new ResponseTaskDto(task.getTaskId(), task.getTaskTitle(), task.getTaskDescription(), task.getMilestone().getMilestoneId());
+        return ResponseEntity.status(HttpStatus.OK).body(responseTaskDto);
     }
 
     @GetMapping("project/{projectId}/task")
