@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:mysql://s4.java21.net:13306/nhn_exam_106
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: nhn_academy_106
+    password: oD8vlmwi!
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    database-platform: org.hibernate.dialect.MySQL8Dialect
